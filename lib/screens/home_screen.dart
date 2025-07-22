@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/models/question_model.dart';
 import '../models/constants.dart';
+import '../widget/question_widget.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -41,17 +43,31 @@ class _HomeScreenState extends State<HomeScreen> {
       },
     ),
   ];
-  int index=0;
+
+  int index = 0;
+
   @override
-  Widget build(BuildContext context)
-   {
+  Widget build(BuildContext context) {
     return Scaffold(
-    backgroundColor: background,
-      appBar:AppBar(
-        title:const Text('Quiz App'),
-         backgroundColor: background,
-         shadowColor: Colors.transparent,
-      )
+      backgroundColor: background,
+      appBar: AppBar(
+        title: const Text('Quiz App'),
+        backgroundColor: background,
+        shadowColor: Colors.transparent,
+      ),
+      body: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(16.0), // Optional padding
+        child: Column(
+          children: [
+            QuestionWidget(
+              indexAction: index,
+              question: questions[index].title, // Corrected variable name
+              totalQuestions: questions.length,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
